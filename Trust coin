@@ -1,0 +1,45 @@
+"use client"
+import { useState } from "react"
+import { motion } from "framer-motion"
+
+export default function Home() {
+  const [theme, setTheme] = useState("dark")
+  const  = useState({email: "holysin682@gmail.com", role: "admin", code: "HOLY10", earned: 30})
+  const bg = theme === "dark" ? "bg-[#07071a]" : "bg-[#f4f4ff]"
+  const card = theme === "dark" ? "bg-white/5 backdrop-blur-xl" : "bg-white/70 backdrop-blur-xl"
+
+  return (
+    <main className={`${bg} min-h-screen text-white`}>
+      <nav className="flex justify-between p-6">
+        <h1 className="text-3xl font-bold bg-gradient-to-r from-orange-400 to-yellow-400 bg-clip-text text-transparent">TrustCoinWallet</h1>
+        <button onClick={()=>setTheme(theme==="dark"?"light":"dark")} className="px-4 py-2 rounded-xl bg-purple-600">{theme==="dark"?"☀️":"🌙"}</button>
+      </nav>
+
+      <motion.section initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} className="text-center py-20 px-4">
+        <h2 className="text-5xl font-extrabold">Trade & Earn $10 BTC</h2>
+        <p className="text-gray-400 mt-3">Secure. Low Fees. Real Support.</p>
+      </motion.section>
+
+      <section className={`max-w-2xl mx-auto m-4 p-6 rounded-2xl border-white/10 ${card}`}>
+        <h3 className="text-2xl font-bold">🎁 Refer & Earn $10 BTC</h3>
+        <p className="text-gray-400">Both get $10 BTC when friend trades $100+</p>
+        <div className="flex mt-3">
+          <input readOnly value={`https://trustcoinwallet.com/ref/${user.code}`} className="flex-1 p-2 rounded-l-lg bg-black/30"/>
+          <button onClick={()=>navigator.clipboard.writeText(`https://trustcoinwallet.com/ref/${user.code}`)} className="px-4 bg-green-600 rounded-r-lg">Copy</button>
+        </div>
+        <p className="text-green-400 mt-2">Earned: ${user.earned} in BTC</p>
+      </section>
+
+      {user.role === "admin" && (
+        <section className={`max-w-4xl mx-auto m-4 p-6 rounded-2xl border-white/10 ${card}`}>
+          <h3 className="text-2xl font-bold">Admin: {user.email}</h3>
+          <div className="grid grid-cols-3 gap-4 mt-4">
+            <div className="p-4 bg-blue-500/20 rounded-xl">Users: 1204</div>
+            <div className="p-4 bg-orange-500/20 rounded-xl">BTC Fees: 0.42</div>
+            <div className="p-4 bg-pink-500/20 rounded-xl">Tickets: 5</div>
+          </div>
+        </section>
+      )}
+    </main>
+  )
+}
