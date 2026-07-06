@@ -1,0 +1,2 @@
+npm i framer-motion @supabase/supabase-js axios
+npm run dev
